@@ -1,0 +1,2 @@
+# tccc2gc
+TopCoder部のカレンダーをGoogleカレンダーに書き込みます
