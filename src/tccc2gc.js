@@ -24,6 +24,8 @@ function calendarUpdate() {
     // AtCoderを無視する設定で，AtCoderのイベントならchokuDie
     var atcoder = isAtCoderEvent(title);
     if (ignoreAtCoder && atcoder) continue;
+
+    if (isCodeforcesEvent(title)) continue;    // こどふぉは時間のAPIが公開されているので省く
     
     // 終了時刻を計算
     var duration = getDurationByTitle(title);
@@ -36,6 +38,22 @@ function calendarUpdate() {
     }
     else {
       res.setTime(startTime, endTime);
+    }
+  }
+
+  // Codeforcesのイベントの追加.
+  var contests = getCodeforcesEvent();
+  for each(var e in contests){
+    var startTime = new Date(e.startTimeSeconds*1000);
+    var endTime = new Date((e.startTimeSeconds + e.durationSeconds) * 1000);
+    var res = checkDuplication(e.name, startTime);
+    if(res == null) {
+      dstCalendar.createEvent(e.name, startTime, endTime,
+               { description: e.description, location:e.websiteUrl });
+    } else {
+      res.setTime(startTime, endTime);
+      res.setLocation(e.websiteUrl);
+      res.setDescription(e.description);
     }
   }
 }
@@ -77,4 +95,26 @@ function checkDuplication(title, startTime) {
  */
 function isAtCoderEvent(title) {
   return title.indexOf("AtCoder") >= 0;
+}
+/*
+ * こどふぉのイベントかどうか
+ */
+function isCodeforcesEvent(title) {
+  return title.indexOf("Codeforces") >= 0;
+}
+
+/*
+ * こどふぉのイベントを受け取る
+ */
+function getCodeforcesEvent(){
+  var response = UrlFetchApp.fetch("http://codeforces.com/api/contest.list?gym=false&lang=en");
+  var obj = JSON.parse(response.getContentText());
+  var contests = obj.result;
+  var res = []
+  for each(var c in contests) {
+    if( c.phase == "FINISHED" ) continue;
+    if( c.name.indexOf("Codeforces") < 0 ) c.name = "[Codeforces]" + c.name;
+    res.push(c);
+  }
+  return res;
 }
