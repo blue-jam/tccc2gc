@@ -8,10 +8,13 @@ function calendarUpdate() {
   dstCalendar = CalendarApp.getCalendarById(dstCalendarId);
   
   ignoreAtCoder = Boolean(scriptProperties.getProperty("ignoreAtCoder"));
+  var fetchWeeks = parseInt(scriptProperties.getProperty("fetchWeeks"), 10);
+  if (isNaN(fetchWeeks))
+    fetchWeeks = 5;
   
-  // 全部は見えないらしいので，先1か月のを調べる．
+  // 全部は見えないらしいので，数週間分を調べる．
   var now = new Date();
-  var oneMonthFromNow = new Date(now.getTime() + (30 * 24 * 60 * 60 * 1000));
+  var oneMonthFromNow = new Date(now.getTime() + (fetchWeeks * 7 * 24 * 60 * 60 * 1000));
   var srcEvents = srcCalendar.getEvents(now, oneMonthFromNow);
   
   // 各イベントについて処理
