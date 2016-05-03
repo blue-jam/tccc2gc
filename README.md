@@ -7,6 +7,8 @@ TopCoder部のカレンダーをGoogleカレンダーに書き込みます
 Googleカレンダーの予定をいじります．
 **「最悪予定が全部消えるかもしれない」**という覚悟のもと使ってください．
 
+50週先まで1日毎に更新するカレンダーは[こちら](https://calendar.google.com/calendar/embed?src=2liqa7qfpt8dtf8rntpt472v7g%40group.calendar.google.com&ctz=Asia/Tokyo)にあります．
+
 # 使い方
 
 0. Googleアカウントでログインしておきます
@@ -24,7 +26,6 @@ https://topcoder.g.hatena.ne.jp/calendar?mode=ical を貼り付けます．
   |:-------------:|:-------------------------------------------------------------|
   | srcCalendarId | (TopCoder部のカレンダーをインポートしたGoogleカレンダーのID) |
   | dstCalendarId | (出力先のGoogleカレンダーのID)                               |
-  | ignoreAtCoder | (空でない適当な文字列)                                       |
 
   とします．AtCoderのイベントをカレンダーに追加したくない場合のみ，スクリプトプロパティに
   ignoreAtCoderを作成してください．
@@ -33,3 +34,10 @@ https://topcoder.g.hatena.ne.jp/calendar?mode=ical を貼り付けます．
 承認し，スクリプトが正しく実行されれば出力先カレンダーに予定が書き込まれるはずです．
 9. 自動で定期的に実行させる場合は，「現在のプロジェクトのトリガー（時計の絵のアイコン）」をクリックし，
 calendarUpdateに対するトリガーを追加します．
+
+# プロパティの設定
+
+  | プロパティ    | 値                                                           |
+  |:-------------:|:-------------------------------------------------------------|
+  | ignoreAtCoder | (空でない適当な文字列)                                       |
+  | fetchWeeks    | 取ってくるカレンダーの期間（デフォルトで5週間）              |
