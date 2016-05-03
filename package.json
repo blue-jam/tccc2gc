@@ -1,0 +1,24 @@
+{
+  "name": "tccc2gc",
+  "version": "0.0.1",
+  "description": "トップコーダー部のカレンダーをGoogleカレンダーに登録",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/blue-jam/tccc2gc.git"
+  },
+  "author": "blue_jam",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/blue-jam/tccc2gc/issues"
+  },
+  "homepage": "https://github.com/blue-jam/tccc2gc#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-shell": "^0.5.2"
+  },
+  "dependencies": {}
+}
