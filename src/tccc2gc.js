@@ -7,7 +7,7 @@ function calendarUpdate() {
   srcCalendar = CalendarApp.getCalendarById(srcCalendarId);
   dstCalendar = CalendarApp.getCalendarById(dstCalendarId);
   
-  ignoreAtCoder = Boolean(scriptProperties.getProperty("ignoreAtCoder"));
+  var ignoreAtCoder = Boolean(scriptProperties.getProperty("ignoreAtCoder"));
   var fetchWeeks = parseInt(scriptProperties.getProperty("fetchWeeks"), 10);
   if (isNaN(fetchWeeks))
     fetchWeeks = 5;
