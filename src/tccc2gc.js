@@ -50,13 +50,19 @@ function calendarUpdate() {
     var startTime = new Date(e.startTimeSeconds*1000);
     var endTime = new Date((e.startTimeSeconds + e.durationSeconds) * 1000);
     var res = checkDuplication(e.name, startTime);
+    var desc = e.description;
+    var url = e.description;
+    if (typeof desc === "undefined")
+      desc = "";
+    if (typeof url === "undefined")
+      url = "";
     if(res == null) {
       dstCalendar.createEvent(e.name, startTime, endTime,
-               { description: e.description, location:e.websiteUrl });
+               { description: desc, location:url });
     } else {
       res.setTime(startTime, endTime);
-      res.setLocation(e.websiteUrl);
-      res.setDescription(e.description);
+      res.setLocation(url);
+      res.setDescription(desc);
     }
   }
 }
