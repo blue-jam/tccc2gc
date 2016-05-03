@@ -116,7 +116,7 @@ function getCodeforcesEvent(){
   var res = []
   for each(var c in contests) {
     if( c.phase == "FINISHED" ) continue;
-    if( c.name.indexOf("Codeforces") < 0 ) c.name = "[Codeforces]" + c.name;
+    if( c.name.indexOf("Codeforces") < 0 ) c.name = "[Codeforces] " + c.name;
     res.push(c);
   }
   return res;
