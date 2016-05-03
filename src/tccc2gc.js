@@ -77,7 +77,7 @@ function getDurationByTitle(title) {
     if(title.indexOf(key) >= 0)
       return durationDictionary[key];
   }
-  return 90;
+  return 0;
 }
 
 /*
